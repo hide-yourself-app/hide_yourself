@@ -7,11 +7,10 @@ on:
       - feature/github-action-pipeline
     paths:
       - hide_yourself/**
+      - .github/**
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./hide_yourself
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -20,4 +19,5 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: Build with Maven
+        working-directory: ./hide_yourself
         run: mvn --batch-mode --update-snapshots clean package verify
