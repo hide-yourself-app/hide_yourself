@@ -6,7 +6,7 @@ on:
       - main
       - feature/github-action-pipeline
     paths:
-      - hide_yourself
+      - hide_yourself/**
 jobs:
   build:
     runs-on: ubuntu-latest

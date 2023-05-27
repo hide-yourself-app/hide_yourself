@@ -17,5 +17,6 @@ public class HelloController implements HelloApi {
                         .text("Hello World")
                         .currentTime(OffsetDateTime.now())
                 .build()));
+
     }
 }
