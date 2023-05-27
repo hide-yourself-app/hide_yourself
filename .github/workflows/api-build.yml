@@ -3,8 +3,7 @@ run-name: Building the API project
 on:
   push:
     branches:
-      - main
-      - feature/github-action-pipeline
+      - '*'
     paths:
       - hide_yourself/**
       - .github/**
