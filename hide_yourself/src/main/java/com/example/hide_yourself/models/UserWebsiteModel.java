@@ -7,7 +7,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserWebsite {
+public class UserWebsiteModel {
     private Long userId;
     private String website;
     private String websiteLoginEmail;

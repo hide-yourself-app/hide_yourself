@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Account {
+public class AccountModel {
     private Long userId;
     private String username;
     private String password;
@@ -17,7 +17,7 @@ public class Account {
     private Timestamp createdOn;
     private Timestamp lastLogin;
 
-    public Account(String username, String password, String email) {
+    public AccountModel(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
