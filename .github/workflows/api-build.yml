@@ -1,0 +1,23 @@
+name: Build the API project
+run-name: Building the API project
+on:
+  push:
+    branches:
+      - '*'
+    paths:
+      - hide_yourself/**
+      - .github/**
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        working-directory: ./hide_yourself
+        run: mvn --batch-mode --update-snapshots clean package verify

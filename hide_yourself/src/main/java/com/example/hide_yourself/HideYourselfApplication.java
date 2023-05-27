@@ -9,5 +9,4 @@ public class HideYourselfApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HideYourselfApplication.class, args);
 	}
-
 }
