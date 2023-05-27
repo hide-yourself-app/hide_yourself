@@ -4,7 +4,7 @@ import "./_header.scss";
 export default function Header() {
   return (
     <div className="header">
-      <h2 className="logo">Logo</h2>
+      <h2 className="logo">HideYourself App</h2>
       <nav className="navigation">
         <a href="#">Home</a>
         <a href="#">About</a>
