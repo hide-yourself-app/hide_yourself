@@ -1,0 +1,26 @@
+openapi: 3.0.0
+info:
+  version: ${project.version}
+  title: Hide Yourself API
+  description: API specifications for Hide Yourself
+paths:
+  /hello:
+    get:
+      description: Hello World
+      responses:
+        '200':
+          description: "Hello World"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HelloWorld"
+components:
+  schemas:
+    HelloWorld:
+      type: object
+      properties:
+        text:
+          type: string
+        current-time:
+          type: string
+          format: date-time
