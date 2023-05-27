@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>hide_yourself</artifactId>
+
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>hide_yourself</name>
