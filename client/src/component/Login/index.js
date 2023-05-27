@@ -1,32 +1,59 @@
 import React from "react";
 import "./_login.scss";
 import { IonIcon } from "@ionic/react";
-import { Link } from 'react-router-dom';
-import {
-  lockClosedOutline,
-  mailOutline,
-  closeOutline,
-  personOutline,
-} from "ionicons/icons";
+import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { lockClosedOutline, mailOutline } from "ionicons/icons";
 
 export default function Login() {
+  let validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
   return (
     <div className="wrapper">
       <div className="form-box login">
         <h2>Login</h2>
-        <form action="#">
+        <form action={formik.handleSubmit}>
           <div className="input-box">
             <span className="icon">
               <IonIcon icon={mailOutline} />
             </span>
-            <input type="email" required />
+            <input
+              name="email"
+              type="email"
+              onChange={formik.handleChange("email")}
+              required
+            />
             <label>Email</label>
           </div>
           <div className="input-box">
             <span className="icon">
               <IonIcon icon={lockClosedOutline} />
             </span>
-            <input type="password" required />
+            <input
+              name="password"
+              type="password"
+              onChange={formik.handleChange("password")}
+              required
+            />
             <label>Password</label>
           </div>
           <div className="remember-forgot">
