@@ -1,12 +1,14 @@
 import React from "react";
 import "./_login.scss";
 import { IonIcon } from "@ionic/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { lockClosedOutline, mailOutline } from "ionicons/icons";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   let validationSchema = Yup.object().shape({
     email: Yup.string()
       .email("Invalid email format")
@@ -22,8 +24,11 @@ export default function Login() {
       password: "",
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      const { password2, ...formData } = values;
+      console.log(formData);
+      formik.resetForm();
+      navigate("/");
     },
   });
 
@@ -31,7 +36,7 @@ export default function Login() {
     <div className="wrapper">
       <div className="form-box login">
         <h2>Login</h2>
-        <form action={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
           <div className="input-box">
             <span className="icon">
               <IonIcon icon={mailOutline} />
@@ -43,6 +48,11 @@ export default function Login() {
               required
             />
             <label>Email</label>
+            <div className="error">
+              {formik.touched.email && formik.errors.email ? (
+                <div>{formik.errors.email}</div>
+              ) : null}
+            </div>
           </div>
           <div className="input-box">
             <span className="icon">
@@ -55,6 +65,11 @@ export default function Login() {
               required
             />
             <label>Password</label>
+            <div className="error">
+              {formik.touched.password && formik.errors.password ? (
+                <div>{formik.errors.password}</div>
+              ) : null}
+            </div>
           </div>
           <div className="remember-forgot">
             <label>
