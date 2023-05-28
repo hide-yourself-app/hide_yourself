@@ -3,3 +3,5 @@ spring:
     url: r2dbc:h2:mem:///testdb
     username: sa
     password: ""
+  main:
+    web-application-type: reactive
