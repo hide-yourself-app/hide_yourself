@@ -1,6 +1,7 @@
 package com.example.hide_yourself.models;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 
 import java.sql.Timestamp;
 
@@ -10,6 +11,8 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccountModel {
+
+    @Id
     private Long userId;
     private String username;
     private String password;
