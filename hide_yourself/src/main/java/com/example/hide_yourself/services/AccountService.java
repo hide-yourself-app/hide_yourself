@@ -17,4 +17,21 @@ public class AccountService {
     public Mono<AccountModel> getAccountModelById(Long accountId) {
         return accountRepository.findById(accountId);
     }
+
+    public Mono<AccountModel> createAccountModel(final AccountModel accountModel) {
+        return this.accountRepository.save(accountModel);
+    }
+
+    public Mono<AccountModel> updateAccountModel(Long accountModelId, final Mono<AccountModel> accountModelMono) {
+        return this.accountRepository.findById(accountModelId)
+                .flatMap(account -> accountModelMono.map(newAccount -> {
+                    account.setEmail(newAccount.getEmail());
+                    return account;
+                }))
+                .flatMap(this.accountRepository::save);
+    }
+
+    public Mono<Void> deleteAccountModel(final Long accountModelId) {
+        return this.accountRepository.deleteById(accountModelId);
+    }
 }
